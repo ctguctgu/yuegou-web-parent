@@ -9,6 +9,7 @@ import Page4 from './views/nav2/Page4.vue'
 import Page5 from './views/nav2/Page5.vue'
 import Page6 from './views/nav3/Page6.vue'
 import echarts from './views/charts/echarts.vue'
+import Brand from "./views/product/Brand";
 
 let routes = [
     {
@@ -27,42 +28,42 @@ let routes = [
     {
         path: '/',
         component: Home,
-        name: '导航一',
-        iconCls: 'el-icon-message',//图标样式class
-        children: [
-            { path: '/main', component: Main, name: '主页', hidden: true },
-            { path: '/table', component: Table, name: 'Table' },
-            { path: '/form', component: Form, name: 'Form' },
-            { path: '/user', component: user, name: '列表' },
-        ]
-    },
-    {
-        path: '/',
-        component: Home,
-        name: '导航二',
-        iconCls: 'fa fa-id-card-o',
-        children: [
-            { path: '/page4', component: Page4, name: '页面4' },
-            { path: '/page5', component: Page5, name: '页面5' }
-        ]
-    },
-    {
-        path: '/',
-        component: Home,
-        name: '',
-        iconCls: 'fa fa-address-card',
+        name: '商品管理',
+        iconCls: 'fa fa-address-card',//图标样式class
         leaf: true,//只有一个节点
         children: [
-            { path: '/page6', component: Page6, name: '导航三' }
+            { path: '/mainPage', component: echarts, name: '首页' },
         ]
     },
     {
         path: '/',
         component: Home,
-        name: 'Charts',
+        name: '商品管理',
+        iconCls: 'el-icon-message',
+        children: [
+            { path: '/brand', component: Brand, name: '品牌管理' },
+            { path: '/type', component: Table, name: '类型管理' },
+            { path: '/specification', component: Form, name: '属性管理' },
+            { path: '/product', component: user, name: '商品管理' }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '系统管理',
+        iconCls: 'fa fa-id-card-o',
+        children: [
+            { path: '/page4', component: Page4, name: '员工管理' },
+            { path: '/page5', component: Page5, name: '部门管理' }
+        ]
+    },
+    {
+        path: '/',
+        component: Home,
+        name: '营销管理',
         iconCls: 'fa fa-bar-chart',
         children: [
-            { path: '/echarts', component: echarts, name: 'echarts' }
+            { path: '/page6', component: Page6, name: '营销活动管理' }
         ]
     },
     {
