@@ -10,6 +10,7 @@ import Page5 from './views/nav2/Page5.vue'
 import Page6 from './views/nav3/Page6.vue'
 import echarts from './views/charts/echarts.vue'
 import Brand from "./views/product/Brand";
+import ProductType from "./views/product/ProductType";
 
 let routes = [
     {
@@ -42,7 +43,7 @@ let routes = [
         iconCls: 'el-icon-message',
         children: [
             { path: '/brand', component: Brand, name: '品牌管理' },
-            { path: '/type', component: Table, name: '类型管理' },
+            { path: '/productType', component: ProductType, name: '类型管理' },
             { path: '/specification', component: Form, name: '属性管理' },
             { path: '/product', component: user, name: '商品管理' }
         ]
