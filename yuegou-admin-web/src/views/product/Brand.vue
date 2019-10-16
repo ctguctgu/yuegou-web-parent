@@ -29,9 +29,9 @@
 			</el-table-column>
 			<el-table-column prop="productType.name" label="商品类型" width="150" sortable>
 			</el-table-column>
-			<el-table-column prop="logo" label="LOGO" width="120" sortable>
+			<el-table-column prop="logo" label="LOGO" width="120">
 				<template scope="scope">
-					<img src= scope.row.logo>
+					<img :src= "'http://172.16.4.153'+scope.row.logo" style="height: 50px;">
 				</template>
 			</el-table-column>
 			<el-table-column prop="description" label="描述" min-width="150" sortable>
@@ -57,10 +57,10 @@
 				<el-form-item label="商品名称" prop="name">
 					<el-input v-model="editForm.name" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="英文名字">
+				<el-form-item label="英文名字" prop="englishName">
 					<el-input v-model="editForm.englishName" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="商品类型">
+				<el-form-item label="商品类型" prop="selectedOptions">
 					<el-cascader
 							:show-all-levels="false"
 							expand-trigger="hover"
@@ -72,6 +72,20 @@
 					></el-cascader>
 				</el-form-item>
 				<el-form-item label="LOGO">
+					<el-upload
+							action="http://127.0.0.1:9999/services/common/file"
+							list-type="picture-card"
+							:on-preview="handlePictureCardPreview"
+							:on-remove="handleRemove"
+							:on-success="handleSuccess"
+							:before-upload="handleBeforeUpload"
+							:file-list="fileList"
+					>
+						<i class="el-icon-plus"></i>
+					</el-upload>
+					<el-dialog v-model="dialogVisible" size="tiny">
+						<img width="100%" :src="dialogImageUrl" alt="">
+					</el-dialog>
 				</el-form-item>
 				<el-form-item label="描述">
 					<el-input type="textarea" v-model="editForm.description"></el-input>
@@ -89,10 +103,10 @@
 				<el-form-item label="商品名称" prop="name">
 					<el-input v-model="addForm.name" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="英文名字">
+				<el-form-item label="英文名字" prop="englishName">
 					<el-input v-model="addForm.englishName" auto-complete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="商品类型">
+				<el-form-item label="商品类型" prop="selectedOptions">
 					<el-cascader
 							:show-all-levels="false"
 							expand-trigger="hover"
@@ -104,6 +118,20 @@
 					></el-cascader>
 				</el-form-item>
 				<el-form-item label="LOGO">
+					<el-upload
+							action="http://127.0.0.1:9999/services/common/file"
+							list-type="picture-card"
+							:on-preview="handlePictureCardPreview"
+							:on-remove="handleRemove"
+							:on-success="handleSuccess"
+							:before-upload="handleBeforeUpload"
+							:file-list="fileList"
+					>
+						<i class="el-icon-plus"></i>
+					</el-upload>
+					<el-dialog v-model="dialogVisible" size="small">
+						<img width="100%" :src="dialogImageUrl" alt="">
+					</el-dialog>
 				</el-form-item>
 				<el-form-item label="描述">
 					<el-input type="textarea" v-model="addForm.description"></el-input>
@@ -139,7 +167,13 @@
 				editLoading: false,
 				editFormRules: {
 					name: [
-						{ required: true, message: '请输入姓名', trigger: 'blur' }
+						{ required: true, message: '请输入商品名称', trigger: 'blur' }
+					],
+					englishName: [
+						{ required: true, message: '请输入英文名称', trigger: 'blur' }
+					],
+					selectedOptions: [
+						{ type:'array', required: true, message: '请选择商品类型', trigger: 'blur' }
 					]
 				},
 				//编辑界面数据
@@ -161,7 +195,13 @@
 				addLoading: false,
 				addFormRules: {
 					name: [
-						{ required: true, message: '商品名称', trigger: 'blur' }
+						{ required: true, message: '请输入商品名称', trigger: 'blur' }
+					],
+					englishName: [
+						{ required: true, message: '请输入英文名称', trigger: 'blur' }
+					],
+					selectedOptions: [
+						{ type:'array', required: true, message: '请选择商品类型', trigger: 'blur' }
 					]
 				},
 				//新增界面数据
@@ -171,15 +211,13 @@
 					productType: '',
 					description: '',
 					selectedOptions: []
-				}
-
+				},
+				dialogImageUrl: '',
+				dialogVisible: false,
+				fileList:[]
 			}
 		},
 		methods: {
-			//性别显示转换
-			formatSex: function (row, column) {
-				return row.sex == 1 ? '男' : row.sex == 0 ? '女' : '未知';
-			},
 			handleCurrentChange(val) {
 				this.page = val;
 				this.getbrands();
@@ -230,66 +268,79 @@
 			//显示编辑界面
 			handleEdit: function (index, row) {
 				this.editFormVisible = true;
-				console.debug(row);
 				this.editForm = Object.assign({}, row);
+				this.fileList=[];
+				this.fileList.push({"url":"http://172.16.4.153/"+row.logo})
 				this.editForm.selectedOptions = this.getTreeDeepArr(row.productTypeId, this.options);
-				console.debug(this.getTreeDeepArr(row.productTypeId, this.options));
 			},
 			//显示新增界面
 			handleAdd: function () {
 				this.addFormVisible = true;
 				this.addForm = {
 					name: '',
-					birth: '',
-					addr: ''
+					englishName: '',
+					productType: '',
+					description: '',
+					selectedOptions: []
 				};
 			},
 			//编辑
 			editSubmit: function () {
-				this.editLoading = true;
-				let para = Object.assign({}, this.editForm);
-				para.productTypeId = para.selectedOptions[para.selectedOptions.length-1];
-				this.$http.post("/product/brand/add",para).then(res=>{
-					this.editLoading = false;
-					let {success,message} = res.data;
-					if(success){
-						this.$message({
-							message: '提交成功',
-							type: 'success'
-						});
-					}else {
-						this.$message({
-							message: message,
-							type: 'error'
+				this.$refs.editForm.validate((valid) => {
+					if (valid) {
+						this.$confirm('确认提交吗？', '提示', {}).then(() => {
+							this.editLoading = true;
+							let para = Object.assign({}, this.editForm);
+							para.productTypeId = para.selectedOptions[para.selectedOptions.length-1];
+							this.$http.post("/product/brand/add",para).then(res=>{
+								this.editLoading = false;
+								let {success,message} = res.data;
+								if(success){
+									this.$message({
+										message: '提交成功',
+										type: 'success'
+									});
+								}else {
+									this.$message({
+										message: message,
+										type: 'error'
+									});
+								}
+								this.editFormVisible = false;
+								this.getbrands();
+							})
 						});
 					}
-					this.editFormVisible = false;
-					this.getbrands();
-				})
-
+				});
 			},
 			//新增
 			addSubmit: function () {
-				this.addLoading = true;
-				let para = Object.assign({}, this.addForm);
-				para.productTypeId = para.selectedOptions[para.selectedOptions.length-1];
-				this.$http.post("/product/brand/add",para).then(res=>{
-					this.addLoading = false;
-					let {success,message} = res.data;
-					if(success){
-						this.$message({
-							message: '提交成功',
-							type: 'success'
-						});
-					}else {
-						this.$message({
-							message: message,
-							type: 'error'
+				this.$refs.addForm.validate((valid) => {
+					if (valid) {
+						this.$confirm('确认提交吗？', '提示', {}).then(() => {
+							this.addLoading = true;
+							let para = Object.assign({}, this.addForm);
+							para.productTypeId = para.selectedOptions[para.selectedOptions.length-1];
+							this.$http.post("/product/brand/add",para).then(res=>{
+								this.addLoading = false;
+								let {success,message} = res.data;
+								if(success){
+									this.$message({
+										message: '提交成功',
+										type: 'success'
+									});
+								}else {
+									this.$message({
+										message: message,
+										type: 'error'
+									});
+								}
+								this.addFormVisible = false;
+								this.getbrands();
+							})
 						});
 					}
-					this.addFormVisible = false;
-					this.getbrands();
-				})
+				});
 			},
 			selsChange: function (sels) {
 				this.sels = sels;
@@ -331,7 +382,6 @@
 			getTreeData(data){
 				// 循环遍历json数据
 				for(var i=0;i<data.length;i++){
-
 					if(data[i].children.length<1){
 						// children若为空数组，则将children设为undefined
 						data[i].children=undefined;
@@ -364,7 +414,55 @@
 					return returnArr;
 				}
 				return childrenEach(treeData, depth);
-			}
+			},
+			handleRemove(file, fileList) {
+				this.fileList=[];
+				let filePath = file.response.result;
+				this.$http.delete("/common/file?filePath="+filePath).then(res=>{
+					let {success,message} = res.data
+					if (success){
+						this.$message({
+							message: '删除成功',
+							type: 'success'
+						});
+					}else {
+						this.$message({
+							message: message,
+							type: 'error'
+						});
+					}
+				})
+			},
+			handlePictureCardPreview(file) {
+				this.dialogImageUrl = file.url;
+				this.dialogVisible = true;
+			},
+			handleSuccess(response, file, fileList){
+				let{success,message,result}=response;
+				if (success){
+					this.addForm.logo=result;
+					this.editForm.logo=result;
+					this.$message({
+						message: '上传成功',
+						type: 'success'
+					});
+				}else {
+					this.$message({
+						message: message,
+						type: 'error'
+					});
+				}
+				this.fileList=fileList;
+			},
+			handleBeforeUpload(file){
+				//看fileList中的元素个数
+				if(this.fileList.length>0){
+				this.$message({
+					message: '只能上传一张logo图片', type: 'warning'
+				});
+				return false;
+				}
+			},
 		},
 		mounted() {
 			this.getbrands();
