@@ -208,7 +208,6 @@
 				addForm: {
 					name: '',
 					englishName: '',
-					productType: '',
 					description: '',
 					selectedOptions: []
 				},
@@ -243,7 +242,7 @@
 					type: 'warning'
 				}).then(() => {
 					this.listLoading = true;
-					//NProgress.start();
+					this.removeFile(row.logo);
 					this.$http.delete("/product/brand/delete/"+row.id).then(res=>{
 						this.listLoading = false;
 						let {success,message} = res.data;
@@ -276,10 +275,10 @@
 			//显示新增界面
 			handleAdd: function () {
 				this.addFormVisible = true;
+				this.fileList=[];
 				this.addForm = {
 					name: '',
 					englishName: '',
-					productType: '',
 					description: '',
 					selectedOptions: []
 				};
@@ -347,6 +346,7 @@
 			},
 			//批量删除
 			batchRemove: function () {
+				console.debug(this.sels);
 				var ids = this.sels.map(item => item.id).toString();
 				this.$confirm('确认删除选中记录吗？', '提示', {
 					type: 'warning'
@@ -416,19 +416,23 @@
 				return childrenEach(treeData, depth);
 			},
 			handleRemove(file, fileList) {
+				console.debug(file);
+				let filepath = '';
+				if (file.size){
+					filepath = file.response.result;
+				}else {
+					filepath = file.url.substring(20,file.url.length);
+				}
+				this.removeFile(filepath);
 				this.fileList=[];
-				let filePath = file.response.result;
-				this.$http.delete("/common/file?filePath="+filePath).then(res=>{
+			},
+			removeFile(path){
+				this.$http.delete("/common/file?filePath="+path).then(res=>{
 					let {success,message} = res.data
 					if (success){
 						this.$message({
 							message: '删除成功',
 							type: 'success'
-						});
-					}else {
-						this.$message({
-							message: message,
-							type: 'error'
 						});
 					}
 				})
@@ -457,12 +461,21 @@
 			handleBeforeUpload(file){
 				//看fileList中的元素个数
 				if(this.fileList.length>0){
-				this.$message({
-					message: '只能上传一张logo图片', type: 'warning'
-				});
-				return false;
+					this.$message({
+						message: '只能上传一张logo图片', type: 'warning'
+					});
+					return false;
 				}
-			},
+				const isJPG = file.type.split('/')[0] == 'image';
+				const isLt2M = file.size / 1024 / 1024 < 2;
+				if (!isJPG) {
+					this.$message.error('上传文件只能是图片!');
+				}
+				if (!isLt2M) {
+					this.$message.error('上传头像图片大小不能超过 2MB!');
+				}
+				return isJPG && isLt2M;
+			}
 		},
 		mounted() {
 			this.getbrands();

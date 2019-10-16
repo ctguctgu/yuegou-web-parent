@@ -93,7 +93,8 @@
       <workItem from="1571104127696" duration="1715000" />
       <workItem from="1571116134273" duration="1528000" />
       <workItem from="1571134622557" duration="6333000" />
-      <workItem from="1571187395941" duration="3660000" />
+      <workItem from="1571187395941" duration="3691000" />
+      <workItem from="1571196067795" duration="11328000" />
     </task>
     <task id="LOCAL-00001" summary="前后端联动">
       <created>1570796418028</created>
@@ -116,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571054230269</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="完善文件上传">
+      <created>1571192515561</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1571192515561</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -140,6 +148,7 @@
     <MESSAGE value="前后端联动" />
     <MESSAGE value="完善品牌维护" />
     <MESSAGE value="优化商品类型" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化商品类型" />
+    <MESSAGE value="完善文件上传" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善文件上传" />
   </component>
 </project>
