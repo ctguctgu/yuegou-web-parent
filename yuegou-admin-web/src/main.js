@@ -19,7 +19,13 @@ import 'font-awesome/css/font-awesome.min.css'
 import axios from 'axios'
 axios.defaults.baseURL = "http://localhost:9999/services"//网关
 Vue.prototype.$http = axios
+//全局引入富文本编辑框
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
 
+Vue.use(VueQuillEditor)
 Vue.use(ElementUI)
 Vue.use(VueRouter)
 Vue.use(Vuex)

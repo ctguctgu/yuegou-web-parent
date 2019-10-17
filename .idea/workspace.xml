@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="556c9bb6-66a0-4e16-8809-de0c233485fb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/yuegou-admin-web/src/views/product/Product.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yuegou-admin-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/yuegou-admin-web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yuegou-admin-web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/yuegou-admin-web/src/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yuegou-admin-web/src/routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/yuegou-admin-web/src/routes.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yuegou-admin-web/src/views/product/Brand.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yuegou-admin-web/src/views/product/Brand.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -45,18 +49,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ecommerce" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/yuegou-admin-web/src/views/product" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="ts.external.directory.path" value="D:\software\ideaIU-2019.2.3.win\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\software\IdeaProjects\yuegou-web-parent\ecommerce" />
       <recent name="D:\software\IdeaProjects\yuegou-web-parent\yuegou-admin-web\src\views\product" />
+      <recent name="D:\software\IdeaProjects\yuegou-web-parent\ecommerce" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -94,7 +99,8 @@
       <workItem from="1571116134273" duration="1528000" />
       <workItem from="1571134622557" duration="6333000" />
       <workItem from="1571187395941" duration="3691000" />
-      <workItem from="1571196067795" duration="11328000" />
+      <workItem from="1571196067795" duration="11356000" />
+      <workItem from="1571295119159" duration="18381000" />
     </task>
     <task id="LOCAL-00001" summary="前后端联动">
       <created>1570796418028</created>
@@ -124,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571192515561</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="完善文件上传">
+      <created>1571215665643</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1571215665643</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
