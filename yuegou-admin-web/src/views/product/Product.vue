@@ -381,9 +381,11 @@
 					this.editForm.ext=res.data;
 				})
 				this.fileList=[];
-				let ary = row.medias.split(",");
-				for (var i =0;i<ary.length;i++){
-					this.fileList.push({"url":"http://172.16.4.153/"+ary[i]})
+				if (row.medias){
+					let ary = row.medias.split(",");
+					for (var i =0;i<ary.length;i++){
+						this.fileList.push({"url":"http://172.16.4.153/"+ary[i]})
+					}
 				}
 				this.editForm.selectedOptions = this.getTreeDeepArr(row.productTypeId, this.options);
 			},
