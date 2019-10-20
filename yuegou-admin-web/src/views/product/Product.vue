@@ -217,9 +217,16 @@
 				</div>
 			</el-card>
 			<el-table :data="skus" highlight-current-row style="width: 100%;">
-				<el-table-column v-for="(value,key) in skus[0]" :label="key"
+				<el-table-column v-if="key!='price'&&key!='store'&&key!='indexs'" v-for="(value,key) in skus[0]" :label="key"
 								 :prop="key">
 				</el-table-column>
+                <el-table-column v-if="(key=='price'||key=='store')&&key!='indexs'" v-for="(value,key) in skus[0]" :label="key"
+                                 :prop="key">
+                    <template scope="scope">
+                        <el-input v-model="scope.row[key]" auto-complete="false"/>
+                    </template>
+                </el-table-column>
+
 			</el-table>
 			<div slot="footer" class="dialog-footer">
                 <el-button @click.native="skuPropertiesVisible = false">取消</el-button>
@@ -330,11 +337,31 @@
             }
         },
         methods: {
-			// removeProperty(index1,index2){
-			// 	this.skuProperties[index1].options.splice(index2,1);
-			// },
             //保存sku属性
             SaveSkuProperties() {
+                let productId = this.sels[0].id;
+                let param = {};
+                param.skuProperties = this.skuProperties;
+                param.skus = this.skus;
+                this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                    this.$http.post("/product/product/saveSkuProperties?productId="+productId, param).then(res => {
+                        this.addLoading = false;
+                        let {success, message} = res.data;
+                        if (success) {
+                            this.$message({
+                                message: '保存成功',
+                                type: 'success'
+                            });
+                        } else {
+                            this.$message({
+                                message: message,
+                                type: 'error'
+                            });
+                        }
+                        this.skuPropertiesVisible = false;
+                        this.getProducts();
+                    })
+                });
             },
             //保存显示属性
             SaveViewProperties() {
@@ -351,13 +378,13 @@
                                 message: '保存成功',
                                 type: 'success'
                             });
+                            this.viewPropertiesVisible = false;
                         } else {
                             this.$message({
                                 message: message,
                                 type: 'error'
                             });
                         }
-                        this.viewPropertiesVisible = false;
                         this.getProducts();
                     })
                 });
@@ -727,10 +754,16 @@
 							cur.options.forEach((e2,index)=>{
 								let obj = Object.assign({},e1);
 								obj[cur.specName]=e2;
-								if(curIndex==arr.length-1){
-									obj.price = 0;
-									obj.store = 0;
-								}
+                                let lastIndexs = obj.indexs;
+                                if(!lastIndexs) lastIndexs = "";
+                                if(curIndex==arr.length-1){
+                                    obj.price = 0;
+                                    obj.store = 0;
+                                    lastIndexs = lastIndexs+index;
+                                }else{
+                                    lastIndexs = lastIndexs+index+"_";
+                                }
+                                obj.indexs = lastIndexs;
 								tem.push(obj);
 							})
 						})

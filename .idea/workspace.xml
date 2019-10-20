@@ -99,6 +99,12 @@
       <workItem from="1571295119159" duration="18647000" />
       <workItem from="1571359551656" duration="1646000" />
       <workItem from="1571362918905" duration="15116000" />
+      <workItem from="1571532612929" duration="284000" />
+      <workItem from="1571535982423" duration="1193000" />
+      <workItem from="1571537424357" duration="316000" />
+      <workItem from="1571537761370" duration="1143000" />
+      <workItem from="1571541990329" duration="86000" />
+      <workItem from="1571543551458" duration="4853000" />
     </task>
     <task id="LOCAL-00001" summary="前后端联动">
       <created>1570796418028</created>
@@ -163,7 +169,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571362962579</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="显示属性和sku属性维护">
+      <created>1571532809876</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1571532809876</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +212,7 @@
     <MESSAGE value="优化商品类型" />
     <MESSAGE value="完善文件上传" />
     <MESSAGE value="商品管理维护" />
-    <option name="LAST_COMMIT_MESSAGE" value="商品管理维护" />
+    <MESSAGE value="显示属性和sku属性维护" />
+    <option name="LAST_COMMIT_MESSAGE" value="显示属性和sku属性维护" />
   </component>
 </project>
