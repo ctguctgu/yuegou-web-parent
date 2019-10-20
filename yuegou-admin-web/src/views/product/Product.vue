@@ -226,7 +226,6 @@
                         <el-input v-model="scope.row[key]" auto-complete="false"/>
                     </template>
                 </el-table-column>
-
 			</el-table>
 			<div slot="footer" class="dialog-footer">
                 <el-button @click.native="skuPropertiesVisible = false">取消</el-button>
@@ -432,6 +431,7 @@
                     this.skuProperties = res.data;
                 })
                 this.skuPropertiesVisible = true;
+
             },
             //上架
             handleOnSale() {
@@ -770,6 +770,14 @@
 						return tem;
 					},[{}])
 					this.skus=result;
+					//sku属性回显
+                    this.$http.get("/product/sku/getPrices/"+this.sels[0].id).then(res=>{
+                        let s = res.data;
+                        for (let i =0;i<s.length;i++){
+                            this.skus[i].price = s[i].price
+                            this.skus[i].store = s[i].availableStock
+                        }
+                    })
 				},
                 deep: true
             }
