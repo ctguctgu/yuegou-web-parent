@@ -435,9 +435,57 @@
             },
             //上架
             handleOnSale() {
+                var ids = this.sels.map(item => item.id).toString();
+                this.$confirm('确认上架选中记录吗？', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    this.listLoading = true;
+                    this.$http.get("/product/product/onSale?ids=" + ids).then(res => {
+                        this.listLoading = false;
+                        let {success, message} = res.data;
+                        if (success) {
+                            this.$message({
+                                message: '上架成功',
+                                type: 'success'
+                            });
+                            this.getProducts();
+                        } else {
+                            this.$message({
+                                message: message,
+                                type: 'error'
+                            });
+                            this.getProducts();
+                        }
+                    })
+                }).catch(() => {
+                });
             },
             //下架
             handleOffSale() {
+                var ids = this.sels.map(item => item.id).toString();
+                this.$confirm('确认下架选中记录吗？', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    this.listLoading = true;
+                    this.$http.get("/product/product/offSale?ids=" + ids).then(res => {
+                        this.listLoading = false;
+                        let {success, message} = res.data;
+                        if (success) {
+                            this.$message({
+                                message: '下架成功',
+                                type: 'success'
+                            });
+                            this.getProducts();
+                        } else {
+                            this.$message({
+                                message: message,
+                                type: 'error'
+                            });
+                            this.getProducts();
+                        }
+                    })
+                }).catch(() => {
+                });
             },
             formatOnSale(row, colunm) {
                 return this.formatDate(row.onSaleTime);
