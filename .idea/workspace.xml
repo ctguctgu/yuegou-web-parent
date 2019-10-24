@@ -2,9 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="556c9bb6-66a0-4e16-8809-de0c233485fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ecommerce/js/vue/axios.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/js/vue/axios.map" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/js/vue/axios.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/44.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/45.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/46.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/47.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/48.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/49.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/50.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/60.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/detail/61.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/list.html" afterDir="false" />
     </list>
@@ -117,7 +123,8 @@
       <workItem from="1571809036401" duration="5583000" />
       <workItem from="1571827418900" duration="159000" />
       <workItem from="1571827682234" duration="3474000" />
-      <workItem from="1571889055144" duration="861000" />
+      <workItem from="1571889055144" duration="2858000" />
+      <workItem from="1571911693594" duration="4232000" />
     </task>
     <task id="LOCAL-00001" summary="前后端联动">
       <created>1570796418028</created>
@@ -210,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571651837079</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="完善列表页">
+      <created>1571893624520</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1571893624520</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +262,7 @@
     <MESSAGE value="商品管理维护" />
     <MESSAGE value="显示属性和sku属性维护" />
     <MESSAGE value="完善商品列表页" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善商品列表页" />
+    <MESSAGE value="完善列表页" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善列表页" />
   </component>
 </project>
