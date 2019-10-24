@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="556c9bb6-66a0-4e16-8809-de0c233485fb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ecommerce/js/vue/vue.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ecommerce/js/vue/vue.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/js/vue/axios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/js/vue/axios.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ecommerce/js/vue/axios.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ecommerce/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ecommerce/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/ecommerce/list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yuegou-admin-web/src/views/product/Product.vue" beforeDir="false" afterPath="$PROJECT_DIR$/yuegou-admin-web/src/views/product/Product.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -111,7 +110,14 @@
       <workItem from="1571541990329" duration="86000" />
       <workItem from="1571543551458" duration="4876000" />
       <workItem from="1571576842060" duration="3456000" />
-      <workItem from="1571638467397" duration="5684000" />
+      <workItem from="1571638467397" duration="6360000" />
+      <workItem from="1571654342576" duration="18000" />
+      <workItem from="1571658033366" duration="931000" />
+      <workItem from="1571797426011" duration="22000" />
+      <workItem from="1571809036401" duration="5583000" />
+      <workItem from="1571827418900" duration="159000" />
+      <workItem from="1571827682234" duration="3474000" />
+      <workItem from="1571889055144" duration="861000" />
     </task>
     <task id="LOCAL-00001" summary="前后端联动">
       <created>1570796418028</created>
@@ -197,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1571580461000</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="完善商品列表页">
+      <created>1571651837078</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1571651837079</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,6 +247,7 @@
     <MESSAGE value="完善文件上传" />
     <MESSAGE value="商品管理维护" />
     <MESSAGE value="显示属性和sku属性维护" />
-    <option name="LAST_COMMIT_MESSAGE" value="显示属性和sku属性维护" />
+    <MESSAGE value="完善商品列表页" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善商品列表页" />
   </component>
 </project>
